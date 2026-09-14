@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="tC3pkUs4QcE1uGIJ31YT9H">
+<head data-page-node-id="nZ8APn4p9SsxkAEj14ETft">
+<meta charset="UTF-8" data-page-node-id="lVzNF9rXetwcClWdhlVvDI" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="VNPv340egkIaTAe7jRHc3M" />
+<title>知遇录 · 裂变海报</title>
+<style>
+  :root{
+    --bg:#0b0f1a; --bg-soft:#0f1626; --panel:#121b2e;
+    --ink:#eef3fb; --ink-soft:#9fb0c7;
+    --accent:#5eead4; --accent-2:#8b7bf0; --gold:#f5c45e;
+    --line:rgba(255,255,255,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:#05070d; color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+    display:flex; flex-direction:column; align-items:center;
+    padding:24px 12px 40px; gap:18px;
+  }
+  /* ===== 海报本体 ===== */
+  #poster{
+    width:720px; height:1280px; position:relative; overflow:hidden;
+    border-radius:28px; background:
+      radial-gradient(900px 520px at 12% -8%, rgba(94,234,212,.16), transparent 60%),
+      radial-gradient(820px 480px at 100% 4%, rgba(139,123,240,.18), transparent 55%),
+      radial-gradient(760px 620px at 50% 118%, rgba(95,164,240,.10), transparent 60%),
+      linear-gradient(160deg,#0b0f1a 0%, #0c1322 55%, #0a0f1c 100%);
+    box-shadow:0 30px 90px rgba(0,0,0,.6);
+    padding:40px 50px 14px;
+    display:flex; flex-direction:column;
+  }
+  #poster::before{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.55;
+    background-image:
+      radial-gradient(1.6px 1.6px at 18% 22%, rgba(255,255,255,.8), transparent),
+      radial-gradient(1.3px 1.3px at 72% 16%, rgba(255,255,255,.6), transparent),
+      radial-gradient(1.1px 1.1px at 44% 60%, rgba(255,255,255,.55), transparent),
+      radial-gradient(1.5px 1.5px at 86% 70%, rgba(255,255,255,.7), transparent),
+      radial-gradient(1px 1px at 30% 84%, rgba(255,255,255,.5), transparent),
+      radial-gradient(1.2px 1.2px at 60% 40%, rgba(255,255,255,.45), transparent);
+  }
+  .row{position:relative; z-index:1}
+  /* 顶部品牌行 */
+  .brand{display:flex; align-items:center; justify-content:space-between}
+  .logo{font-size:38px; font-weight:800; letter-spacing:3px;
+    background:linear-gradient(120deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text; background-clip:text; color:transparent}
+  .badge-hack{
+    font-size:12.5px; color:var(--ink-soft); border:1px solid var(--line);
+    padding:6px 13px; border-radius:999px; background:rgba(255,255,255,.04);
+    letter-spacing:.5px}
+  .kicker{margin-top:14px; font-size:14.5px; color:var(--accent); letter-spacing:2px; font-weight:600}
+  /* 主标题 */
+  .hero{margin-top:24px}
+  .hero h1{margin-top:10px; font-size:43px; line-height:1.26; font-weight:800;
+    text-shadow:0 4px 34px rgba(94,234,212,.16)}
+  .hero h1 .hl{background:linear-gradient(120deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text; background-clip:text; color:transparent}
+  .hero .sub{margin-top:16px; font-size:15.5px; color:var(--ink-soft); line-height:1.6;
+    border-left:3px solid rgba(94,234,212,.5); padding-left:14px}
+  /* 信任条（核心差异点，放大） */
+  .trust{margin-top:14px; display:flex; gap:14px; align-items:flex-start;
+    padding:14px 18px; border-radius:18px;
+    background:linear-gradient(120deg,rgba(94,234,212,.12),rgba(139,123,240,.12));
+    border:1px solid rgba(94,234,212,.30);
+    box-shadow:0 0 40px rgba(94,234,212,.10) inset}
+  .trust .shield{font-size:26px; line-height:1; flex:0 0 auto; filter:drop-shadow(0 0 10px rgba(94,234,212,.5))}
+  .trust .tx{font-size:15.5px; line-height:1.7}
+  .trust .tx b{color:var(--accent); font-weight:700}
+  .trust .tx .big{font-size:17px; font-weight:800; color:var(--ink); display:block; margin-bottom:4px}
+  /* 模块芯片 */
+  .modlabel{margin-top:12px; font-size:13px; color:var(--ink-soft); letter-spacing:2px}
+  .modules{margin-top:5px; display:grid; grid-template-columns:repeat(3,1fr); gap:4px}
+  .mod{display:flex; align-items:center; gap:9px; padding:5px 9px;
+    border:1px solid var(--line); border-radius:15px; background:rgba(255,255,255,.045);
+    backdrop-filter:blur(4px)}
+  .mod .ic{width:30px; height:30px; flex:0 0 30px; border-radius:9px; display:grid; place-items:center;
+    font-size:17px; background:linear-gradient(135deg,rgba(94,234,212,.22),rgba(139,123,240,.22));
+    border:1px solid var(--line)}
+  .mod .t{font-size:14px; font-weight:700}
+  .mod .d{font-size:10.5px; color:var(--ink-soft); margin-top:1px; line-height:1.3}
+  /* 中部刘看山 + 标语 */
+  .stage{margin-top:8px; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px}
+  .fox{width:86px; height:86px; border-radius:26px; object-fit:contain;
+    filter:drop-shadow(0 16px 40px rgba(94,234,212,.35));
+    background:radial-gradient(circle at 50% 40%, rgba(94,234,212,.18), transparent 70%)}
+  .foxline{font-size:16px; text-align:center; color:var(--ink); line-height:1.65; max-width:560px}
+  .foxline .name{color:var(--gold); font-weight:700}
+  .foxline .hl{color:var(--accent); font-weight:700}
+  /* 底部 CTA */
+  .foot{position:relative; z-index:1; margin-top:auto; display:flex; align-items:center; gap:18px;
+    padding-top:8px; border-top:1px solid var(--line)}
+  .qr{width:108px; height:108px; flex:0 0 108px; border-radius:14px; background:#fff;
+    display:grid; place-items:center; overflow:hidden; padding:7px}
+  .qr img{width:100%; height:100%; object-fit:contain; display:block}
+  .url{margin-top:12px; font-size:11.5px; color:var(--ink-soft); font-family:ui-monospace,Menlo,Consolas,monospace;
+    background:rgba(255,255,255,.05); border:1px solid var(--line); border-radius:8px; padding:6px 10px;
+    word-break:break-all; line-height:1.4}
+  .cta .big{font-size:25px; font-weight:800; line-height:1.3}
+  .cta .big .hl{background:linear-gradient(120deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text; background-clip:text; color:transparent}
+  .cta .small{margin-top:10px; font-size:14px; color:var(--ink-soft)}
+  .cta .tags{margin-top:12px; display:flex; gap:8px; flex-wrap:wrap}
+  .cta .tag{font-size:11.5px; color:var(--ink-soft); border:1px solid var(--line);
+    padding:4px 10px; border-radius:999px}
+  /* 工具条 */
+  .toolbar{display:flex; gap:12px; align-items:center; flex-wrap:wrap; justify-content:center}
+  .btn{cursor:pointer; border:none; border-radius:12px; padding:12px 22px; font-size:15px; font-weight:600;
+    color:#06231f; background:linear-gradient(120deg,var(--accent),var(--accent-2));
+    box-shadow:0 8px 24px rgba(94,234,212,.3)}
+  .btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--line)}
+  textarea{width:min(720px,92vw); height:150px; resize:vertical; border-radius:12px;
+    border:1px solid var(--line); background:var(--panel); color:var(--ink);
+    padding:12px; font-family:inherit; font-size:13px; line-height:1.7}
+  .hint{font-size:12px; color:var(--ink-soft)}
+</style>
+</head>
+<body data-page-node-id="3rGAbqzYxGxEOuqikV9LMM">
+  <div id="poster" data-page-node-id="ihckwStBi7pncAPhevOrEU">
+    <div class="row brand" data-page-node-id="D4nXTe7nCJWNyeoMnvaRQ9">
+      <div class="logo" data-page-node-id="jlMxAI5J0IEeyr3ioK4HaR">知遇录</div>
+      <div class="badge-hack" data-page-node-id="rmG5Ybh23jFjR3QYHNqQZi">知乎黑客松 2026 · 知识炼金场</div>
+    </div>
+    <div class="row kicker" data-page-node-id="vBANsQfu0S3lk3pDIOeXw9">长在知乎生态的「个人成长操作系统」</div>
+
+    <div class="row hero" data-page-node-id="AuwsirztFfgDD3bChCDhrz">
+      <h1 data-page-node-id="avfhQTYuYXGtJruvflFpSO">刷过即忘的知乎，<br data-page-node-id="SXdxGJWnLekKh6X4BggBRT"/>变成<span class="hl" data-page-node-id="ZIYsA7SHVyMh97DSURb57i">属于你的大佬养成系统</span></h1>
+      <div class="sub" data-page-node-id="pBxEuRmFSFX3401vAQy7rn">刘看山陪你：看清自己 → 复盘事实 → 检索真实样本 → 领域速通。<br data-page-node-id="CcB5uL5FDSh4hUwK2KtXwi"/>每一步都锚定知乎此刻真实发生的内容，附出处、可溯源。</div>
+    </div>
+
+    <div class="row trust" data-page-node-id="D9YR4J0NysIULXU7hIDTZP">
+      <div class="shield" data-page-node-id="1tNiQRaAcyVd1Z8MjXaaNA">🛡️</div>
+      <div class="tx" data-page-node-id="aI1qjkgJlAKcmXroUqFyiM">
+        <span class="big" data-page-node-id="NdDOHJRNcKy34pzGSuUKWQ">真·可信，不是 AI 在替你编故事</span>
+        基于<b data-page-node-id="CcFGB5nw1e38TxLxFbA729">知乎实时开放能力</b>（站内 / 全网 / 热榜 / 关注 / 创作），每一句回答都附<b data-page-node-id="rBMLFP2QcgfvPOjP5J5eBo">知乎原文链接</b>，可溯源、防幻觉；你的个人沉淀内容一键导出 Markdown，可粘贴进任意笔记 / 知识库长期留存；还能<b data-page-node-id="zyTrustB">用自己的知乎账号登录</b>，看到属于你的创作、关注与收藏。
+      </div>
+    </div>
+
+    <div class="row modlabel" data-page-node-id="lJ4FG1UAVymEQLBpK7q9t8">全能力矩阵 · 从「看见自己」到「活成样本」</div>
+    <div class="row modules" data-page-node-id="tMjR8dP3d1SCyv8z3zPVO4">
+      <div class="mod" data-page-node-id="CrFdYWOBKjGGF0U7rtERVr"><div class="ic" data-page-node-id="rVvxaU8j0IJMZL4vNBMrzB">🪞</div><div data-page-node-id="jdjr0vOSXoIcVzQ4mcL4zH"><div class="t" data-page-node-id="w6WLNEhgm5kPZhh8MG0Vdv">自我认知</div><div class="d" data-page-node-id="NQAHsSCeHokxQjWXQzjFA1">多维镜像，看清优势与盲区</div></div></div>
+      <div class="mod" data-page-node-id="tiOxHu8HaRi4AoP2lwNn2T"><div class="ic" data-page-node-id="ZvcKnKYHOTsSqyCikOhcDu">🔁</div><div data-page-node-id="L00R0AAsO0UD5IIA72ndTf"><div class="t" data-page-node-id="H40540QVg7lP5WIwIGVNHD">复盘</div><div class="d" data-page-node-id="aRdVlegnUwR51ywKEoQEXr">系统思维镜片，看穿事实</div></div></div>
+      <div class="mod" data-page-node-id="auktSGgzFLvBdGze08I91P"><div class="ic" data-page-node-id="PZNF7HADN9GahP4fh9zadl">🧭</div><div data-page-node-id="j5NO9S0XdKUZkWPjFcGGJM"><div class="t" data-page-node-id="Ung26Gnt9PjTVvLY2is0mP">知遇·检索</div><div class="d" data-page-node-id="YEANpwQwHcqZnUKmoAEFEh">实时搜知乎真实样本</div></div></div>
+      <div class="mod" data-page-node-id="DuDCifJETV9YAjLiggXae5"><div class="ic" data-page-node-id="wBUozDvIGCZ2QzzeVUe16N">🚀</div><div data-page-node-id="Z0pq1kcJQQGvS6n3jVXPjO"><div class="t" data-page-node-id="FyIBEcpfxHeIOHvFukkOcW">领域速通</div><div class="d" data-page-node-id="LquwnH7NQQohemUkPYnWvY">30 天方法路径，上手即走</div></div></div>
+      <div class="mod" data-page-node-id="NpRYpG3IVAyM5VYLGa4XMB"><div class="ic" data-page-node-id="k8otx4UpbvBdicDLKXMzAS">🧠</div><div data-page-node-id="fmbRnYjGnbf3VZHdi7LiEQ"><div class="t" data-page-node-id="OioxC8G9riqIVfmDqw3PCR">大佬思维模型</div><div class="d" data-page-node-id="MJiQpV4IxrI9kU4QZePLYq">319 思维点 · 可折叠</div></div></div>
+      <div class="mod" data-page-node-id="udJXAYlIfXO8YfJEG1qnbZ"><div class="ic" data-page-node-id="iFPDjQXQs5RxxyB9FT1D9O">📚</div><div data-page-node-id="0EknJpucZGIKQEhz7b28eV"><div class="t" data-page-node-id="Nu64mXNaHjF19MclBvSTds">私人知识库</div><div class="d" data-page-node-id="IrDEGnyjAm3ZlJUXAeGRHW">7 合 1 · 可搜索可折叠</div></div></div>
+      <div class="mod" data-page-node-id="KvzlQEHTNhZ9ZtaOhYVCif"><div class="ic" data-page-node-id="gjVi9nTpXonIIceREjBv2N">🌟</div><div data-page-node-id="X3uts8A9DzZA3vtJbZ3yH8"><div class="t" data-page-node-id="ISPpc6H2K3Am8pjPrN8Pf5">养成</div><div class="d" data-page-node-id="gZTvZtEoBYOmi2JjtpLWXo">签到打卡 · 雷达 · 图章墙</div></div></div>
+      <div class="mod" data-page-node-id="mRFbu5Ex5VfR6JKN1tcGgy"><div class="ic" data-page-node-id="IPc0Yq3rBHuaB5vFriFPwT">✅</div><div data-page-node-id="o8q9pYDqr49B8gXYGcWY0G"><div class="t" data-page-node-id="1mQn4RZDMWWlmcXsE8XjMK">成长检验</div><div class="d" data-page-node-id="F51RNAgcOsOAv3ytoZBTKb">复习卡片 + 三道检验关</div></div></div>
+      <div class="mod" data-page-node-id="kMPpYWns3Mei3lN7uoKKgb"><div class="ic" data-page-node-id="FDc1XBFzAAonHN0BB5wS8y">📖</div><div data-page-node-id="XKKQH4fRvYSo7F4STdJUYc"><div class="t" data-page-node-id="U32n9G3ek3XU6epzA5UplV">人生传记</div><div class="d" data-page-node-id="ccicxu8xVUPH7uHhOhI32L">生命之书 · 一键导出</div></div></div>
+      <div class="mod" data-page-node-id="C1wVvJhk0D5CrwEcwEFgeG"><div class="ic" data-page-node-id="tilYGec5RnrFqBhKLxATl5">🌌</div><div data-page-node-id="oN7aFO5to7DYOSSalbt5Xx"><div class="t" data-page-node-id="vFnCAKdzayoPnerYCn4chC">知识星球</div><div class="d" data-page-node-id="FmqzZIW33RDZrG1bYlAjia">3D 行星宇宙 · 双击看内容</div></div></div>
+      <div class="mod" data-page-node-id="d4sgJW6khjJYMOCrvWhTbl"><div class="ic" data-page-node-id="kbFDsYoDdU8SOrNonK00ZS">📤</div><div data-page-node-id="5Xp2OUEJAjqUNFUp3beYuj"><div class="t" data-page-node-id="wsTg0m96pRCQXyRaM1tBpv">导出 Markdown</div><div class="d" data-page-node-id="tYQ0rYPprjXK7pI3bsYut7">一键导出个人沉淀内容</div></div></div>
+            <div class="mod" data-page-node-id="zyLoginChip"><div class="ic" data-page-node-id="zyLoginIc">🔑</div><div data-page-node-id="zyLoginTx"><div class="t" data-page-node-id="zyLoginT">知乎账号登录</div><div class="d" data-page-node-id="zyLoginD">OAuth 授权 · 读你自己的数据</div></div></div>
+    </div>
+
+    <div class="row stage" data-page-node-id="JzaftVZDCOT2Og1dFb7Qbw">
+      <img class="fox" src="assets/img/liukaishan/liukaishan_dyn_01.gif" alt="刘看山" data-page-node-id="s0hnOVzAE11lq2qrEY0r7H" />
+      <div class="foxline" data-page-node-id="sJtWYJthsJNgypkrauOtJF">「我是<span class="name" data-page-node-id="nDhzz2Cy4NAQHt2WtxglHK">刘看山</span>。不灌鸡汤，不画大饼——只陪你把脚下的路，<span class="hl" data-page-node-id="TwYG57TQ8DoEAc7rUDZphb">走成自己的样本</span>。<br data-page-node-id="eT2Cd5YpExtJBSQ0DgNYHF"/>想问玄学？一个对话框，问到底。」</div>
+    </div>
+
+    <div class="row foot" data-page-node-id="oy6fNZT1aXfG472NP7q4Us">
+      <div class="qr" data-page-node-id="SHoblrHQoGNdjN4uDIkFsk"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MTAiIGhlaWdodD0iNDEwIiBjbGFzcz0ic2Vnbm8iPjxnIHRyYW5zZm9ybT0ic2NhbGUoMTApIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDQxdjQxaC00MXoiLz48cGF0aCBjbGFzcz0icXJsaW5lIiBzdHJva2U9IiMwYjBhMWYiIGQ9Ik0yIDIuNWg3bTMgMGgxbTIgMGgxbTMgMGgybTIgMGgzbTEgMGgxbTIgMGgxbTEgMGg3bS0zNyAxaDFtNSAwaDFtMyAwaDFtMSAwaDFtMSAwaDFtMyAwaDFtMiAwaDFtNCAwaDNtMSAwaDFtNSAwaDFtLTM3IDFoMW0xIDBoM20xIDBoMW0xIDBoNm0xIDBoMm00IDBoMW0xIDBoMW0yIDBoMW0zIDBoMW0xIDBoM20xIDBoMW0tMzcgMWgxbTEgMGgzbTEgMGgxbTEgMGgxbTMgMGgxbTEgMGgxbTEgMGgzbTEgMGgxbTEgMGgybTEgMGgzbTIgMGgxbTEgMGgzbTEgMGgxbS0zNyAxaDFtMSAwaDNtMSAwaDFtMSAwaDFtMSAwaDFtMyAwaDJtMSAwaDFtMSAwaDFtMyAwaDFtMiAwaDFtMyAwaDFtMSAwaDNtMSAwaDFtLTM3IDFoMW01IDBoMW0xIDBoMW0zIDBoMm0xIDBoMW0xIDBoMW0yIDBoMW01IDBoM20xIDBoMW01IDBoMW0tMzcgMWg3bTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGg3bS0yOSAxaDJtMiAwaDhtMSAwaDFtNCAwaDNtLTI5IDFoMW0xIDBoNW0yIDBoMW0yIDBoMW0zIDBoMW01IDBoMW0xIDBoNW0xIDBoNW0tMzUgMWgxbTEgMGgxbTEgMGgxbTIgMGgxbTIgMGgzbTIgMGgxbTIgMGgxbTQgMGgzbTIgMGgxbTIgMGgxbTMgMGgxbS0zNCAxaDFtMiAwaDJtMiAwaDJtMyAwaDVtMSAwaDFtNiAwaDNtMSAwaDJtMSAwaDNtLTM3IDFoMW0xIDBoM20yIDBoNW0xIDBoMW0xIDBoMW0yIDBoNG00IDBoMm0xIDBoMm0yIDBoMW0yIDBoMW0tMzQgMWgybTEgMGgxbTEgMGgxbTEgMGgxbTEgMGg5bTEgMGgybTEgMGgzbTEgMGgybTEgMGgxbTEgMGgzbS0zNSAxaDFtMSAwaDJtNCAwaDVtNCAwaDFtMiAwaDNtMSAwaDFtMSAwaDJtMSAwaDFtMyAwaDFtLTM2IDFoMm0yIDBoNW01IDBoMm0yIDBoMW0xIDBoMm01IDBoM20xIDBoM20yIDBoMW0tMzcgMWgxbTMgMGgxbTQgMGgxbTEgMGgxbTIgMGgxbTEgMGgxbTMgMGgybTEgMGgxbTIgMGgzbTEgMGgzbTIgMGgxbS0zMiAxaDFtMSAwaDNtMiAwaDJtMiAwaDFtMiAwaDFtMyAwaDFtMSAwaDNtMiAwaDJtMSAwaDFtMSAwaDNtLTM2IDFoMW02IDBoMW0yIDBoMm0xIDBoNG0xIDBoMW0zIDBoMW0xIDBoMm0xIDBoMW0yIDBoMW0zIDBoMW0tMzQgMWgxbTMgMGgxbTExIDBoMW0xIDBoMm01IDBoMW01IDBoNG0tMzcgMWgxbTEgMGgxbTEgMGgybTEgMGgxbTEgMGgybTMgMGgxbTEgMGgxbTMgMGg0bTIgMGgxbTIgMGgzbTEgMGgxbTIgMGgxbS0zMyAxaDFtMSAwaDFtMSAwaDFtMSAwaDFtNSAwaDJtMiAwaDFtMiAwaDVtMiAwaDFtMSAwaDFtMSAwaDFtLTM0IDFoMW0xIDBoMm04IDBoMW0zIDBoM20yIDBoMm0yIDBoMW0xIDBoMW00IDBoMW0xIDBoMW0tMzQgMWgxbTEgMGgxbTEgMGgxbTIgMGgxbTIgMGg0bTEgMGgxbTMgMGgxbTIgMGgxbTIgMGgzbTEgMGgzbTIgMGgxbS0zNiAxaDFtMSAwaDJtNCAwaDFtMiAwaDJtMSAwaDhtMSAwaDFtMiAwaDFtMSAwaDFtMSAwaDJtMiAwaDJtLTM3IDFoMm0yIDBoMW0xIDBoMW0xIDBoMm0xIDBoMm0yIDBoMm0zIDBoMW0xIDBoMW0xIDBoNG0xIDBoNG0xIDBoM20tMzcgMWg0bTcgMGgxbTEgMGgxbTEgMGgxbTIgMGg2bTEgMGgybTEgMGgybTEgMGgxbTEgMGgybS0zNSAxaDFtMiAwaDVtMiAwaDJtMSAwaDRtMSAwaDFtOCAwaDFtMSAwaDFtMiAwaDFtMiAwaDJtLTM3IDFoMW00IDBoMW00IDBoNm00IDBoMm0xIDBoMm0yIDBoN20xIDBoMW0tMzYgMWgxbTEgMGgxbTEgMGgzbTEgMGgxbTIgMGgybTIgMGg1bTUgMGgxbTEgMGg2bTEgMGgxbS0yNyAxaDFtMSAwaDNtMSAwaDFtMyAwaDNtMSAwaDNtMiAwaDJtMyAwaDJtMSAwaDFtLTM2IDFoN20yIDBoMW0xIDBoNm0xIDBoMW0yIDBoMW0yIDBoMW0zIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0tMzcgMWgxbTUgMGgxbTEgMGgxbTUgMGgybTQgMGgzbTUgMGgxbTMgMGgybTEgMGgybS0zNyAxaDFtMSAwaDNtMSAwaDFtMSAwaDFtMSAwaDZtMiAwaDFtMyAwaDFtMSAwaDJtMSAwaDZtMSAwaDFtLTM1IDFoMW0xIDBoM20xIDBoMW0xIDBoMW02IDBoM20xIDBoNW0xIDBoMW0xIDBoNG0xIDBoMW0zIDBoMW0tMzcgMWgxbTEgMGgzbTEgMGgxbTEgMGg0bTEgMGgxbTYgMGgybTIgMGgxbTEgMGgxbTEgMGgxbTYgMGgybS0zNyAxaDFtNSAwaDFtMiAwaDFtMSAwaDFtMSAwaDFtMiAwaDFtMyAwaDJtMSAwaDFtMiAwaDVtMSAwaDJtMiAwaDFtLTM3IDFoN20xIDBoMm0yIDBoMm0yIDBoM20xIDBoMW0yIDBoNG0yIDBoMm0xIDBoNSIvPjwvZz48L3N2Zz4K" alt="知遇录体验二维码" data-page-node-id="kPdtZfmB50jwVXEvVPqjzC" /></div>
+      <div class="cta" data-page-node-id="jrb9P7byZt5CfGQ8uboR9O">
+        <div class="big" data-page-node-id="DO827YFaH1OrHLo0rDJZ4h">扫码，开启<span class="hl" data-page-node-id="v5QCVMqDQGgeg7JGtWhc9l">你的成长操作系统</span></div>
+        <div class="small" data-page-node-id="i2jwQkZ5yxKOgh95fT2IIN">刘看山在知遇录，等你走第一步</div>
+        <div class="url" data-page-node-id="9jOZtUpFY8q5BS6NsODerF">🔗 https://my-name-yyx-d0g5pjy204f53929a-1469577695.tcloudbaseapp.com/zhiyulu/</div>
+        <div class="tags" data-page-node-id="IzE4UZCOqCPhHeospd187Q">
+          <span class="tag" data-page-node-id="LMz3v9rJFpD9RckTdgyhbL">#知乎黑客松</span>
+          <span class="tag" data-page-node-id="uqgXnZGta42UXUEWxBmbSE">#知识炼金场</span>
+          <span class="tag" data-page-node-id="zQTSwlMGB68fu56Twt3oUk">#个人成长操作系统</span>
+          <span class="tag" data-page-node-id="mtlQ0cRYWsT29F8q2Rnwr0">#真·可信</span>          <span class="tag" data-page-node-id="zyTagLogin">#知乎账号登录</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toolbar" data-page-node-id="MjUYzvv4npNlNO8XiPs4yK">
+    <button class="btn ghost" id="copyBtn" data-page-node-id="8jCmDwJkPvAOdOWRTdnggB">📋 复制文案</button>
+    <button class="btn ghost" id="shareBtn">📤 分享海报</button>
+    <button class="btn" id="exportBtn" data-page-node-id="E67JrFLKrHoe6wKDE8kbuf">⬇ 下载海报</button>
+    <span class="hint" id="tip" data-page-node-id="FEc1AFlyxW8yoaRZEWdp1Y"></span>
+  </div>
+  <textarea id="copyArea" readonly>【知遇录 · 把刷过的知乎，变成属于你的大佬养成系统】
+
+别人刷知乎图个爽，你刷知乎该攒下点什么。
+知遇录长在知乎生态，是陪你「见人见己」的个人成长操作系统——
+
+🛡️ 真·可信，不是 AI 在替你编故事
+✅ 基于知乎实时开放能力（站内/全网/热榜/关注/创作）
+✅ 每一句回答都附知乎原文链接，可溯源、防幻觉
+📚 个人沉淀内容一键导出 Markdown，可粘贴进任意笔记/知识库长期留存
+🔑 用自己的知乎账号登录，看到属于你的创作、关注与收藏
+
+全能力矩阵，从「看见自己」到「活成样本」：
+🪞自我认知 🔁复盘 🧭知遇检索 🚀领域速通
+🧠思维模型(319点) 📚私人知识库(7合1·可搜索) 🌟养成
+✅成长检验 📖人生传记(可导出) 🌌知识星球(3D宇宙)
+📥导出 Markdown 🔑知乎账号登录
+☯️ 还有刘看山的东方玄学视角：一个对话框，问到底
+
+刘看山说：「不灌鸡汤，不画大饼，只陪你把脚下的路，走成自己的样本。」
+
+👉 扫码即可体验「知遇录」（知乎黑客松参赛作品）
+#知乎黑客松 #知识炼金场 #个人成长操作系统 #真·可信 #知乎账号登录</textarea>
+
+<script defer src="assets/js/lib/html-to-image.js"></script>
+<script>
+  const tip = document.getElementById('tip');
+  function exportPng(){
+    return new Promise((resolve, reject) => {
+      if (typeof htmlToImage === 'undefined') { reject(new Error('图片库未加载')); return; }
+      const node = document.getElementById('poster');
+      htmlToImage.toPng(node, {pixelRatio:2, cacheBust:true, backgroundColor:'#0b0f1a'}).then(resolve).catch(reject);
+    });
+  }
+  document.getElementById('copyBtn').onclick = () => {
+    const a = document.getElementById('copyArea');
+    a.select();
+    const done = () => tip.textContent='✅ 分享文案已复制';
+    if (navigator.clipboard) navigator.clipboard.writeText(a.value).then(done).catch(()=>{document.execCommand('copy');done();});
+    else { document.execCommand('copy'); done(); }
+  };
+  document.getElementById('exportBtn').onclick = async () => {
+    tip.textContent='正在生成海报…';
+    try{
+      const dataUrl = await exportPng();
+      const a = document.createElement('a');
+      a.download = '知遇录_裂变海报.png';
+      a.href = dataUrl; a.click();
+      tip.textContent='✅ 已下载 知遇录_裂变海报.png';
+    }catch(e){ tip.textContent='⚠️ 导出失败：'+e.message+'（可改为直接截图）'; }
+  };
+  document.getElementById('shareBtn').onclick = async () => {
+    tip.textContent='正在生成海报…';
+    try{
+      const dataUrl = await exportPng();
+      const blob = await (await fetch(dataUrl)).blob();
+      const file = new File([blob], '知遇录_裂变海报.png', {type:'image/png'});
+      if (navigator.canShare && navigator.canShare({files:[file]})) {
+        await navigator.share({files:[file], title:'知遇录', text:'把刷过的知乎，变成属于你的大佬养成系统'});
+        tip.textContent='✅ 已唤起系统分享';
+      } else {
+        const a = document.createElement('a');
+        a.download = '知遇录_裂变海报.png';
+        a.href = dataUrl; a.click();
+        tip.textContent='✅ 已下载海报，可手动分享给好友';
+      }
+    }catch(e){ tip.textContent = (e && e.name==='AbortError') ? '已取消分享' : ('⚠️ 分享失败：'+((e&&e.message)||e)+'（可改点下载海报）'); }
+  };
+</script>
+</body>
+</html>

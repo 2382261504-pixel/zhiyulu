@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>知遇录 · 见人见己</title>
+<link rel="icon" href="data:," />
+<link rel="stylesheet" href="assets/css/style.css?v=2026091511" />
+<script>
+  // 后端 zhiyu-api 一直托管在 CloudBase（service.tcloudbase.com），与前端域名无关；
+  // 后端已开 CORS（Access-Control-Allow-Origin: *），故前端托管在任意域名都能跨域调用。
+  // 仅本地联调（localhost / 127.0.0.1）走相对地址 /api/zhihu，其余一律走 API 网关绝对地址。
+  var __h = location.hostname;
+  if (__h && __h !== "localhost" && __h !== "127.0.0.1") {
+    window.ZHIYU_API_BASE = "https://my-name-yyx-d0g5pjy204f53929a.service.tcloudbase.com/zhiyu-api/zhihu";
+  // 兜底：部分国产浏览器（微信/QQ 大字模式等）会把「布局视口」压到固定宽度，
+  // 导致页面只占屏幕左侧、右侧整片空白。检测到「可视视口明显宽于布局视口」时强制铺满。
+  (function () {
+    function fixVp() {
+      try {
+        var vv = window.visualViewport, lw = document.documentElement.clientWidth;
+        if (vv && vv.scale <= 1.02 && vv.width > lw + 8 && lw < 620) {
+          document.documentElement.style.width = Math.round(vv.width) + 'px';
+        }
+      } catch (e) {}
+    }
+    fixVp();
+    window.addEventListener("resize", fixVp);
+    window.addEventListener("orientationchange", fixVp);
+  })();
+  }
+</script>
+</head>
+<body data-route="home">
+<!-- 移动端顶栏（仅手机显示）：logo + 汉堡按钮，点开侧滑导航 -->
+<div class="topbar" id="topbar">
+  <span class="logo">知遇录</span>
+  <button class="nav-toggle" id="navToggle" aria-label="打开导航菜单">☰</button>
+</div>
+<div id="app">
+  <!-- 抽屉导航遮罩（必须放在 #app 内，与 sidebar 同 stacking context，避免被顶层 backdrop 挡住链接点击） -->
+  <div class="nav-backdrop" id="navBackdrop"></div>
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="logo">知遇录</span>
+      <span class="slogan">见人见己，你的个人成长操作系统</span>
+    </div>
+    <nav class="nav" id="nav">
+      <a href="#home" data-tab="home" class="nav-home active"><i class="nav-emo">🏠</i>首页</a>
+      <div class="nav-group">
+        <span class="nav-glabel">① 识己</span>
+        <a href="#self" data-tab="self"><i class="nav-emo">🔮</i>自我认知</a>
+        <a href="#review" data-tab="review"><i class="nav-emo">🔄</i>复盘</a>
+      </div>
+      <div class="nav-group">
+        <span class="nav-glabel">② 见知</span>
+        <a href="#explore" data-tab="explore"><i class="nav-emo">🔭</i>知遇·检索</a>
+        <a href="#field" data-tab="field"><i class="nav-emo">🧭</i>领域速通</a>
+      </div>
+      <div class="nav-group">
+        <span class="nav-glabel">③ 淬识</span>
+        <a href="#models" data-tab="models"><i class="nav-emo">🧠</i>大佬思维模型</a>
+        <a href="#check" data-tab="check"><i class="nav-emo">🧪</i>成长检验</a>
+      </div>
+      <div class="nav-group">
+        <span class="nav-glabel">④ 成册</span>
+        <a href="#grow" data-tab="grow"><i class="nav-emo">🌟</i>养成<i class="nav-tag">成长底座</i></a>
+        <a href="#learn" data-tab="learn"><i class="nav-emo">📚</i>私人知识库<i class="nav-tag">知识资产</i></a>
+        <a href="#graph" data-tab="graph"><i class="nav-emo">🪐</i>知识星球<i class="nav-tag">知识资产</i></a>
+        <a href="#bio" data-tab="bio"><i class="nav-emo">📖</i>人生传记<i class="nav-tag">生命之书</i></a>
+      
+      </nav>
+      <!-- 全局知乎登录状态条：任何页面都可见，点此用你的知乎账号登录 -->
+      <div class="zh-side-login" id="zhGlobalLogin">
+        <div id="zhGlobalText" class="muted">检查知乎登录状态…</div>
+        <button class="ghost" id="zhGlobalBtn" type="button" disabled>…</button>
+      </div>
+    </aside>
+
+  <main id="view"><!-- 路由视图由 app.js 渲染 --></main>
+
+  <!-- 刘看山：可自由移动的桌宠，拖我走动，点我说话 -->
+  <aside id="liu" class="liu-pet" title="刘看山 · 拖我走动，点我说话">
+    <div class="liu-bubble" id="liuBubble">嗨，我是刘看山，陪你一起慢慢长大～</div>
+    <div class="liu-body">
+      <img id="liuGif" src="assets/img/liukaishan/liukaishan_dyn_01.gif" alt="刘看山" />
+      <span class="liu-shadow"></span>
+    </div>
+    <input id="liuInput" class="liu-input" placeholder="和刘看山说点什么…" />
+    <span class="liu-hint" id="liuHint">拖我走动 · 点我说话</span>
+  </aside>
+
+  <!-- 刘看山全局对话浮层（实时全网搜索，第一原则）-->
+  <div id="liuChatModal" class="liu-chat-modal">
+    <div class="liu-chat-panel">
+      <div class="liu-chat-head">
+        <span>🐾 刘看山 · 知乎实时对话</span>
+        <button id="liuChatClose" class="liu-chat-close" aria-label="关闭">✕</button>
+      </div>
+      <div class="chat" id="liuChatBox"></div>
+      <div class="row" style="margin-top:10px">
+        <input id="liuChatInput" placeholder="问刘看山任何问题，他会实时搜知乎来答你…" />
+        <button id="liuChatSend">发送</button>
+      </div>
+      <p class="muted" style="margin:6px 2px 0;font-size:12px">回答由刘看山基于知乎实时讨论生成，仅供参考；来源会随答案附上。</p>
+    </div>
+  </div>
+</div>
+
+
+  <!-- 知行语料：开源精简样本（51 条，随仓库分发） -->
+  <script src="assets/js/zx-corpus.js?v=2026091117"></script>
+  <!-- 知行语料完整版（315 条，私有资产，已被 .gitignore 排除，仅本地与线上部署环境存在）。
+       加载顺序在样本之后，存在则覆盖样本；开源仓库 clone 后该文件缺失不影响运行。 -->
+  <script src="assets/js/zx-corpus.full.js?v=2026091117"></script>
+<script src="assets/js/zhixing-chains.js?v=2026091117"></script>
+<script src="assets/js/lixuan.js?v=2026091117"></script>
+<script src="assets/js/lib/html-to-image.js?v=2026091117"></script>
+<script src="assets/js/app.js?v=2026091512"></script>
+</body>
+</html>

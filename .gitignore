@@ -1,0 +1,56 @@
+# ===== 密钥与凭据：绝不入库 =====
+cloudbaserc.json
+cloudbaserc.*.json
+*.key
+*.pem
+.env
+.env.*
+!.env.example
+
+# ===== 私有藏书：李玄通 2285 段典籍原文（私有资产，有版权风险）=====
+# 注意：必须通配，实际存在 .json / .json.bak2 / _web.json 等多个变体
+lixuan_corpus*
+**/lixuan_corpus*
+tools/build_lixuan_corpus*.py
+
+# ===== 知行语料完整版（315 条，私有资产，未开源）=====
+# 仓库只分发精简样本 assets/js/zx-corpus.js（51 条）；完整版仅本地与线上部署使用
+assets/js/zx-corpus.full.js
+
+# ===== 内部分析文档（短板自评 / 竞品对标 / 架构冷评估，不对外）=====
+AUDIT_*.md
+DEEPEN_*.md
+STACK_UPGRADE.md
+FINAL_DEPLOY_REPORT.md
+
+# ===== 部署产物 =====
+_publish/
+dist/
+build/
+out/
+_deploy_tmp/
+
+# ===== 本地调试 / 归档快照（不入库）=====
+output/
+*.local.html
+_live_chk.js
+_live_app_check.js
+
+# ===== 依赖与缓存 =====
+node_modules/
+*.log
+npm-debug.log*
+
+# ===== 系统与编辑器 =====
+.DS_Store
+Thumbs.db
+*.swp
+
+# ===== 临时调试文件 =====
+.tmp*/
+*.tmp
+*.bak
+*.bak2
+
+# 第三方仓库树 dump（与本项目无关）
+tools/dzg_tree.json
